@@ -7,27 +7,42 @@ void main() {
   });
 }
 
-var c1 = 'cyan';
-var c2 = 'yellow';
-int z = 50;
-int j = 70;
-int i1 = 0;
-int i2 = 0;
-bool d1 = true;
-bool d2 = true;
-int b = 3;
-int s = querySelector('#canvas').clientWidth;
-int x1 = (s - z) ~/ 3;
-int y1 = (s - z) ~/ 2;
-int x2 = ((s - z) ~/ 3) * 2;
-int y2 = (s - z) ~/ 2;
-int h = 0;
+
+
+// Declaring variables
+
+
+
+var c1 = 'cyan';											// Colour of Arrow Keys box
+var c2 = 'yellow';										// Colour of WASD box
+const int z = 50;											// Size of boxes
+const int j = 70;											// Step size
+int i1 = 0;														// Arrow Keys step counter
+int i2 = 0;														// WASD step counter
+bool d1 = true; bool d2 = true;				// d1 and d2 are flags used in step counting
+int b = 3;														// Border size when hollow
+int x1 = (s - z) ~/ 3;								// Arow Keys x-coordinate
+int y1 = (s - z) ~/ 2;								// Arow Keys y-coordinate
+int x2 = ((s - z) ~/ 3) * 2;					// WASD x-coordinate
+int y2 = (s - z) ~/ 2;								// WASD y-coordinate
+int h = 0;														// Hollow counter
+
+
+// Canvas syntax
 
 final context = (querySelector('#canvas') as CanvasElement).context2D;
+int s = querySelector('#canvas').clientWidth;
 
-// Arrow Keys Input
+
+
+// Keyboard Input
+
+
 
 void Move(press) {
+  
+  // Arrow Key Input
+  
   if (press == "ArrowRight") {
     right1();
   }
@@ -40,6 +55,9 @@ void Move(press) {
   if (press == "ArrowDown") {
     down1();
   }
+  
+  // WASD input
+  
   if (press == "d") {
     right2();
   }
@@ -52,6 +70,9 @@ void Move(press) {
   if (press == "s") {
     down2();
   }
+  
+  // Reset and Hollow events
+  
   if (press == "h") {
     h++;
     Draw();
@@ -61,6 +82,13 @@ void Move(press) {
   }
   ;
 }
+
+
+
+// Directional movement of blue square. 
+// The large if statements are for collision detection.
+
+
 
 void down1() {
   if (((y1 <= (y2 - z) && (y1 + z + j) > y2) ||
@@ -170,6 +198,12 @@ void left1() {
   Draw();
 }
 
+
+
+// Directional movement of yellow square.
+
+
+
 void down2() {
   if (((y2 <= (y1 - z) && (y2 + z + j) > y1) ||
           (y2 <= ((y1 - s) - z) && (y2 + z + j) > (y1 - s)) ||
@@ -278,6 +312,9 @@ void left2() {
   Draw();
 }
 
+
+// This function resets the canvas
+
 void reset() {
   x1 = (s - z) ~/ 3;
   y1 = (s - z) ~/ 2;
@@ -289,6 +326,9 @@ void reset() {
 	d2 = true;
   Draw();
 }
+
+
+// This function stylises the 'Button pressed' display
 
 String Cap(String l) {
   if (l == " ") {
@@ -302,11 +342,15 @@ String Cap(String l) {
   }
 }
 
+
 // Drawing the squares
 
 void Draw() {
   context.clearRect(0, 0, s, s);
-
+	
+  
+  // Drawing the blue square
+  
   context.fillStyle = c1;
   context.fillRect(x1, y1, z, z);
   context.fillStyle = c1;
@@ -315,7 +359,10 @@ void Draw() {
   context.fillRect(x1, y1 - s, z, z);
   context.fillStyle = c1;
   context.fillRect(x1 - s, y1 - s, z, z);
-
+	
+  
+  // Drawing the yellow square
+  
   context.fillStyle = c2;
   context.fillRect(x2, y2, z, z);
   context.fillStyle = c2;
@@ -324,8 +371,9 @@ void Draw() {
   context.fillRect(x2, y2 - s, z, z);
   context.fillStyle = c2;
   context.fillRect(x2 - s, y2 - s, z, z);
-
-  //Hollowing out the squares
+	
+  
+  // Hollowing out the squares
 
   if ((h % 2) == 1) {
   context.clearRect(x1 + b, y1 + b, z - (2 * b), z - (2 * b));
@@ -338,7 +386,9 @@ void Draw() {
   context.clearRect(x2 - s + b, y2 + b - s, z - (2 * b), z - (2 * b));
   }
   
-
+  
+	// 'Steps moved' display
+  
   querySelector("#box1").text = "Steps moved: ${i1}";
   querySelector("#box2").text = "Steps moved: ${i2}";
 }
