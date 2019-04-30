@@ -13,19 +13,19 @@ void main() {
 
 
 
-var c1 = 'cyan';											// Colour of Arrow Keys box
-var c2 = 'yellow';										// Colour of WASD box
-const int z = 50;											// Size of boxes
-const int j = 70;											// Step size
-int i1 = 0;														// Arrow Keys step counter
-int i2 = 0;														// WASD step counter
-bool d1 = true; bool d2 = true;				// d1 and d2 are flags used in step counting
-int b = 3;														// Border size when hollow
-int x1 = (s - z) ~/ 3;								// Arow Keys x-coordinate
-int y1 = (s - z) ~/ 2;								// Arow Keys y-coordinate
-int x2 = ((s - z) ~/ 3) * 2;					// WASD x-coordinate
-int y2 = (s - z) ~/ 2;								// WASD y-coordinate
-int h = 0;														// Hollow counter
+var c1 = 'cyan';				// Colour of Arrow Keys box
+var c2 = 'yellow';				// Colour of WASD box
+const int z = 50;				// Size of boxes
+const int j = 70;				// Step size
+int i1 = 0;					// Arrow Keys step counter
+int i2 = 0;					// WASD step counter
+bool d1 = true; bool d2 = true;			// d1 and d2 are flags used in step counting
+int b = 3;					// Border size when hollow
+int x1 = (s - z) ~/ 3;				// Arow Keys x-coordinate
+int y1 = (s - z) ~/ 2;				// Arow Keys y-coordinate
+int x2 = ((s - z) ~/ 3) * 2;			// WASD x-coordinate
+int y2 = (s - z) ~/ 2;				// WASD y-coordinate
+int h = 0;					// Hollow counter
 
 
 // Canvas syntax
@@ -387,7 +387,7 @@ void Draw() {
   }
   
   
-	// 'Steps moved' display
+  // 'Steps moved' display
   
   querySelector("#box1").text = "Steps moved: ${i1}";
   querySelector("#box2").text = "Steps moved: ${i2}";
